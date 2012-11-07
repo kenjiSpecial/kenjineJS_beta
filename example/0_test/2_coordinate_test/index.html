@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Coordinate test</title>
+    <link rel="stylesheet" href="../../common/css/normalize.css">
+    <link rel="stylesheet" href="../../common/css/style.css">
+    <link rel="stylesheet" href="../../common/rainbow/blackboard.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="container">
+    <h1>0.2. coordinate test</h1>
+    <div id="date">10/31/2012</div>
+    <div class="bottomMargin"></div>
+
+    <canvas id="myCanvas"></canvas>
+    <div id="menu">
+        <div class="left"><a href="*">&laquo ****</a></div>
+        <div class="right"><a href="*">**** &raquo</a></div>
+    </div>
+    <div class="clear"></div>
+
+    <h2>Code:</h2>
+    <pre><code data-language="javascript">var centerPtVector = new Vector( 200, 100);
+var myCoordinate = new Coordinate( wd, hg, centerPtVector);
+myCoordinate.draw(myContext);
+
+var my_vector = new Vector(300, 150);
+
+var arrowVectors = new Arrow(my_vector);
+arrowVectors.setStartPt(myCoordinate.initVector);
+
+arrowVectors.draw(myContext);
+myCoordinate.setVector(myContext, my_vector);
+    </code></pre>
+    <div class="back"><a href="../../">home</a></div>
+</div>
+
+<script type="text/javascript" src="../../../src/requestAnim.js"></script>
+<script type="text/javascript" src="../../../src/vector.js"></script>
+
+<script type="text/javascript" src="../../common/js/coordinate.js"></script>
+<script type="text/javascript" src="../../common/js/arrow.js"></script>
+
+<script type="text/javascript" src="script.js"></script>
+
+<script type="text/javascript" src="../../common/rainbow/rainbow.min.js"></script>
+<script type="text/javascript" src="../../common/rainbow/generic.js"></script>
+<script type="text/javascript" src="../../common/rainbow/javascript.js"></script>
+
+</body>
+</html>
