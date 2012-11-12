@@ -1,9 +1,10 @@
 
 //Friction model
+// TODO think about how the force should # see the 4_force/2_contact_force02
 
 var Slope = function () {
-    this.start_vector = new Vector(0, 80);
-    this.end_vector = new Vector(300, 200);
+    this.start_vector = new Vector(40, 80);
+    this.end_vector = new Vector(340, 200);
     this.edge_vector = this.end_vector.edge(this.start_vector);
     this.magnitude = this.edge_vector.getMagnitude();
     this.edge_vector = this.edge_vector.normalize();
@@ -27,7 +28,8 @@ Slope.prototype.draw = function (_context) {
 
 Slope.prototype.circle_collision_detect = function (particle, size) {
 
-    if(this.count < 40){
+    var maxCount = 10;
+    if(this.count < maxCount){
         console.log("");
         console.log("count: "+ this.count);
         console.log("----");
@@ -49,18 +51,19 @@ Slope.prototype.circle_collision_detect = function (particle, size) {
     }
 
     if (this.count < 40) {
-        console.log(distance_between);
+//        console.log(distance_between);
     }
 
-    if (distance_between < size) {
+    if (distance_between <= size) {
 
 
         //calculation of the force
         var edgeForceProject = this.edge_vector.dotProduct(particle.force);
         var normalForceProject = this.normal_vector.dotProduct(particle.force);
-        normalForceProject = 0;
+        normalForceProject *= 0;
         var calculatedForce = this.edge_vector.multipleVector(edgeForceProject);
-        calculatedForce = calculatedForce.addVector(this.normal_vector.multipleVector(normalForceProject));
+//        calculatedForce = calculatedForce.addVector(this.normal_vector.multipleVector(normalForceProject));
+
 
         particle.force = calculatedForce;
     }

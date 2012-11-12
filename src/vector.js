@@ -13,9 +13,9 @@ Canvas_Context.prototype.update_fill = function(context){
     context.fillRect( 0, 0, this.wd, this.hg);
 };
 
-//-------------------
-//---Vector object---
-//-------------------
+//---------------------
+//--- Vector object ---
+//---------------------
 
 var Vector = function(x, y){
     this.x = x;
@@ -28,23 +28,23 @@ Vector.prototype.add = function(x, y){
 };
 
 Vector.prototype.subtract = function(x, y){
-    this.x += x;
-    this.y += y;
-}
+    this.x -= x;
+    this.y -= y;
+};
 
 Vector.prototype.addVector = function( _vec ){
     var vector = new Vector(this.x, this.y);
     vector.x += _vec.x;
     vector.y += _vec.y;
     return vector;
-}
+};
 
 Vector.prototype.subtractVector = function( _vec ){
     var vector = new Vector(this.x, this.y);
     vector.x -= _vec.x;
     vector.y -= _vec.y;
     return vector;
-}
+};
 
 Vector.prototype.addScaledVector = function( vector, val){
     var newVector = new Vector(this.x, this.y);
@@ -52,7 +52,7 @@ Vector.prototype.addScaledVector = function( vector, val){
     newVector.y += vector.y * val;
 
     return newVector;
-}
+};
 
 Vector.prototype.multiple = function(val){
     var temVector = new Vector(this.x, this.y);
@@ -61,14 +61,14 @@ Vector.prototype.multiple = function(val){
     temVector.y *= val;
 
     return temVector;
-}
+};
 
 Vector.prototype.multipleVector = function( val){
     var vector = new Vector(this.x, this.y);
     vector.x *= val;
     vector.y *= val;
     return vector;
-}
+};
 
 Vector.prototype.edge = function(_vec){
     var v = new Vector();
@@ -76,7 +76,7 @@ Vector.prototype.edge = function(_vec){
     v.y = this.y - _vec.y;
 
     return v;
-}
+};
 
 Vector.prototype.normal = function(){
     var perpendicular_vector = new Vector();
@@ -103,8 +103,6 @@ Vector.prototype.getMagnitude = function(){
 };
 
 
-
-
 Vector.prototype.dotProduct = function(vector){
     return (this.x * vector.x + this.y * vector.y);
 };
@@ -115,4 +113,7 @@ Vector.prototype.crossProduct = function(vector){
 };
 
 
-
+//copy action
+Vector.prototype.copy = function(){
+    return new Vector(this.x, this.y);
+}

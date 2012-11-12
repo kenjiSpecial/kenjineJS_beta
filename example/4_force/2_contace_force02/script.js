@@ -47,7 +47,7 @@
     var myParticle = new Particle();
 
     myParticle.mass = 20;
-    myParticle.position = new Vector(0, 40);
+    myParticle.position = new Vector(40, 40);
     myParticle.velocity = new Vector(0, 0);
     myParticle.acceleration = new Vector(0, 0);
 
@@ -73,6 +73,7 @@
         myParticle.setGravity(gravity);
 
         mySlope.circle_collision_detect(myParticle, myBall.size);
+
         if(myParticle.position.y > hg - myBall.size){
             myParticle.position.y -= (myParticle.position.y - hg + myBall.size);
             myParticle.velocity.y *= -0.9;

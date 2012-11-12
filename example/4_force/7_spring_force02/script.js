@@ -1,8 +1,8 @@
 /**
  * Created with JetBrains WebStorm.
- * User: saito
- * Date: 06.11.12
- * Time: 15:08
+ * User: saitoukenji
+ * Date: 11/11/12
+ * Time: 5:29 PM
  * To change this template use File | Settings | File Templates.
  */
 
@@ -12,8 +12,9 @@
      * creating ball class
      */
 
+
     var Ball = function () {
-        this.color = "rgba(0,0,0, .3)";
+        this.color = "rgba(100,100,100, 0.3)";
         this.size = 40;
     };
 
@@ -22,6 +23,18 @@
         context.fillStyle = this.color;
         context.beginPath();
         context.arc(particle.position.x, particle.position.y, this.size, 0, Math.PI * 2, false);
+        context.fill();
+        context.closePath();
+    };
+
+    var Table = function(){
+        this.color = "rgb(0, 0, 0)";
+    };
+
+    Table.prototype.draw = function(context){
+        context.beginPath();
+        context.fillStyle = this.color;
+        context.fillRect(0, 200, 600, 200);
         context.fill();
         context.closePath();
     };
@@ -45,20 +58,30 @@
     myContext.fillRect(0, 0, wd, hg);
 
     var myParticle = new Particle();
-
-    myParticle.mass = 20;
-    myParticle.position = new Vector(40, 40);
+    myParticle.mass = 10;
+    myParticle.position = new Vector(wd * Math.random(), hg /2 -40);
     myParticle.velocity = new Vector(0, 0);
+    myParticle.force = new Vector(0, 0);
     myParticle.acceleration = new Vector(0, 0);
 
     var myBall = new Ball();
     var contextClear = new Canvas_Context(wd, hg);
 
-    var gravity = new Vector(0, 50);
+    //setting the spring
+    var mySpring = new Spring();
+    mySpring.startVector = new Vector( wd/2, hg/2 - 40);
+    mySpring.endVector = myParticle.position.copy();
 
-    var mySlope = new Slope();
+
     var myArrow = new Arrow(myParticle.velocity);
     myArrow.setStartPt(myParticle.position);
+
+    var myForceArrow = new Arrow(myParticle.acceleration);
+    myForceArrow.setStartPt(myParticle.position);
+
+    var myTable = new Table();
+
+
 
     drawing();
 
@@ -67,33 +90,35 @@
     function drawing() {
         contextClear.update_fill(myContext);
 
-        myParticle.setGravity(gravity);
+//        setting the gravity
+//        myParticle.setGravity(gravity);
 
-        mySlope.circle_collision_detect(myParticle, myBall.size);
-        if(myParticle.position.y > hg - myBall.size){
-            myParticle.position.y -= (myParticle.position.y - hg + myBall.size);
-            myParticle.velocity.y *= -0.9;
-        }
+        mySpring.calculation_spring_force(myParticle);
 
         myParticle.update();
+        mySpring.setParticlePosition(myParticle);
 
-//        mySlope.draw(myContext);
-        myContext.beginPath();
-        myContext.fillStyle = mySlope.color;
-        myContext.moveTo(mySlope.start_vector.x, mySlope.start_vector.y);
-        myContext.lineTo(mySlope.end_vector.x, mySlope.end_vector.y);
-        myContext.lineTo(mySlope.end_vector.x, hg);
-        myContext.lineTo(0, hg);
-        myContext.fill();
-        myContext.closePath();
+        myParticle.resetForce();
+        //--------------
+        //drawing phrase
+        //--------------
+
+
+        myTable.draw(myContext);
+        mySpring.draw(myContext, myBall.size);
 
         myArrow.setVector(myParticle.velocity);
         myArrow.setStartPt(myParticle.position);
         myArrow.draw(myContext);
+
+        myForceArrow.setVector(myParticle.acceleration);
+        myForceArrow.setStartPt(myParticle.position);
+        myForceArrow.draw(myContext);
+
         myBall.draw(myContext, myParticle);
 
-        myParticle.resetForce();
+//        myParticle.resetForce();
         requestAnimFrame(drawing);
-    }
 
+    }
 })();
