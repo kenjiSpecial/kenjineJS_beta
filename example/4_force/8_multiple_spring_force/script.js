@@ -7,6 +7,7 @@
  */
 
 
+
 (function () {
 
     /*
@@ -31,7 +32,6 @@
     var Table = function () {
         this.color = "rgb(0, 0, 0)";
     };
-
     Table.prototype.draw = function (context) {
         context.beginPath();
         context.fillStyle = this.color;
