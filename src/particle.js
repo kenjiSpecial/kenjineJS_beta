@@ -42,3 +42,29 @@ Particle.prototype.resetForce = function(){
     this.force.x = 0;
     this.force.y = 0;
 }
+
+
+//--------------------
+
+var SpaceParticle = function(){
+    this.mass = undefined;
+    this.position = undefined;
+
+    this.omega = undefined;
+    this.g = 1;
+    this.radius = undefined;
+
+    this.centerPos = undefined;
+
+    this.lastTime = new Date().getTime();
+};
+
+SpaceParticle.prototype.update = function(){
+    var sumTime = (new Date().getTime() - this.lastTime)/1000;
+
+    if(this.centerPos === undefined){
+        this.position = new Vector(this.radius * Math.cos(this.omega * sumTime), this.radius * Math.sin(this.omega * sumTime));
+    }else{
+        this.position = new Vector(this.radius * Math.cos(this.omega * sumTime) + this.centerPos.x, this.radius * Math.sin(this.omega * sumTime)  + this.centerPos.y);
+    }
+};

@@ -6,10 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
- function CentripetalForce(centerVector, movementParticle){
-    var r = centerVector.edge(movementParticle.position).getMagnitude();
-//    console.log(r);
-    var g = 1;
+ function centripetalForce(centerVector, movementParticle, velocityValue){
+    var Cs = 1;
+    var _g = 100;
 
-    var omega = Math.sqrt(g * movementParticle.mass / (r * r * r));
+    var distanceVector = movementParticle.position.subtractVector(centerVector);
+
+    var centripetalForce = distanceVector.normalize().multipleVector( -movementParticle.mass * velocityValue * velocityValue / distanceVector.getMagnitude());
+    var radialFriction = distanceVector.normalize().multipleVector( -Cs * movementParticle.mass * _g);
+
+
+    if( radialFriction.getMagnitude() > centripetalForce.getMagnitude() ){
+        movementParticle.force = centripetalForce;
+    }else{
+        movementParticle.force = radialFriction;
+    }
+
 }

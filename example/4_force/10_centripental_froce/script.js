@@ -1,16 +1,15 @@
 /**
  * Created with JetBrains WebStorm.
  * User: saito
- * Date: 12.11.12
- * Time: 11:39
+ * Date: 13.11.12
+ * Time: 15:58
  * To change this template use File | Settings | File Templates.
  */
 
-(function () {
-
+(function(){
     var Ball = function () {
         this.color = "rgba(100, 100, 100, 1)";
-        this.size = 24;
+        this.size = 12;
     };
 
     Ball.prototype.draw = function (ballPosition, myContext) {
@@ -21,9 +20,7 @@
         myContext.closePath();
     };
 
-
-
-//----------------------
+//    ---------------
 
     var wd = 600;
     var hg = 400;
@@ -42,39 +39,54 @@
     var myCenterBall = new Ball();
     myCenterBall.color = "#26ade4";
 
+//    myPlanetParticleVelocity
+    var myPlanetParticleVelocityValue = 180;
+
     // myPlanetParticle
-    var myPlanetParticle = new SpaceParticle();
-    myPlanetParticle.mass = 10000;
-    myPlanetParticle.radius = 100;
-
-    myPlanetParticle.omega = Math.sqrt(myPlanetParticle.g * myPlanetParticle.mass/ (myPlanetParticle.radius * myPlanetParticle.radius * myPlanetParticle.radius));
-
-    myPlanetParticle.centerPos = myCenterPositionVector;
+    var myPlanetParticle = new Particle();
+    myPlanetParticle.mass = 10;
+    myPlanetParticle.position = new Vector( wd *(.5 + Math.random()* 0.1 - 0.05)  , hg *(.5 + Math.random()* 0.1 - 0.05));
+    var thetaRandom = Math.PI * 2 * Math.random();
+    myPlanetParticle.velocity = new Vector(0, myPlanetParticleVelocityValue); //new Vector(myPlanetParticleVelocityValue * Math.cos(thetaRandom), myPlanetParticleVelocityValue * Math.sin(thetaRandom));
 
 
     var myPlanetBall = new Ball();
-    myPlanetBall.size = 5;
-
+    myPlanetBall.size = 1;
 
     var myBackgroundFill = new Canvas_Context(wd, hg);
     myBackgroundFill.update_fill(myContext);
 
+    var testCount = 0;
+
+    myCenterBall.draw(myCenterPositionVector, myContext);
+
 
     loop();
 
+
+
     function loop() {
+
+
         //update the background of canvas.
-        myBackgroundFill.update_fill(myContext);
+//        myBackgroundFill.update_fill(myContext);
 
         //calculation of the velocity
-//        CentripetalForce(myCenterPositionVector, myPlanetParticle);
-//        myPlanetParticle.update();
+        centripetalForce(myCenterPositionVector, myPlanetParticle, myPlanetParticleVelocityValue);
+
+
         myPlanetParticle.update();
 
         myPlanetBall.draw(myPlanetParticle.position, myContext);
-        myCenterBall.draw(myCenterPositionVector, myContext);
+
+        myPlanetParticle.resetForce();
+
+        testCount++;
+
 
         requestAnimFrame(loop);
     }
+
+
 
 })();
