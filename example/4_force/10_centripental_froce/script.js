@@ -60,7 +60,6 @@
 
     myCenterBall.draw(myCenterPositionVector, myContext);
 
-
     loop();
 
 
