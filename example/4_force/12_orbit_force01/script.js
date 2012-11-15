@@ -42,21 +42,21 @@
     var particle01 = new Particle();
     particle01.mass = 10;
     particle01.position = new Vector(400, 50);
-    particle01.velocity = new Vector( 0, 0);
+    particle01.velocity = new Vector( 50, -20);
     var myBall01 = new Ball();
     myBall01.size = 10;
 
     var particle02 = new Particle();
     particle02.mass = 6;
     particle02.position = new Vector(500, 300);
-    particle02.velocity = new Vector( 0, 0);
+    particle02.velocity = new Vector( 10, 30);
     var myBall02 = new Ball();
     myBall02.size = 6;
 
     var particle03 = new Particle();
     particle03.mass = 12;
     particle03.position = new Vector(200, 300);
-    particle03.velocity = new Vector( 0, 0);
+    particle03.velocity = new Vector( -80, 0);
     var myBall03 = new Ball();
     myBall03.size = 12;
 
