@@ -116,4 +116,4 @@ Vector.prototype.crossProduct = function(vector){
 //copy action
 Vector.prototype.copy = function(){
     return new Vector(this.x, this.y);
-}
+};
