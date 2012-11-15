@@ -43,6 +43,28 @@ Particle.prototype.update = function(){
 
 };
 
+Particle.prototype.init = function(){
+    if(this.mass === undefined){
+        this.mass = 1;
+    }
+
+    if(this.velocity === undefined){
+        this.velocity = new Vector( 0, 0);
+    }
+
+    if(this.acceleration === undefined){
+        this.acceleration = new Vector( 0, 0);
+    }
+
+    if(this.position === undefined){
+        this.position = new Vector( 0, 0);
+    }
+
+    if(this.force === undefined){
+        this.force = new Vector( 0, 0);
+    }
+};
+
 Particle.prototype.setGravity = function(gravity){
     this.force = gravity.multiple(this.mass);
 };
@@ -50,7 +72,7 @@ Particle.prototype.setGravity = function(gravity){
 Particle.prototype.resetForce = function(){
     this.force.x = 0;
     this.force.y = 0;
-}
+};
 
 
 //--------------------

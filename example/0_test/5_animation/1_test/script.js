@@ -20,6 +20,50 @@
         myContext.closePath();
     };
 
+    var AnimationBall = function(){
+        this.color = "#ff0000";
+        this.size = 5;
+
+        this.lastTime = new Date().getTime();
+
+        this.totalTime = .6;
+        this.currentTime = 0;
+
+        this.animationDone = false;
+    };
+
+    AnimationBall.prototype.startAnimation = function(){
+        this.lastTime = new Date().getTime();
+        this.currentTime = 0;
+
+        this.animationDone = false;
+    };
+
+    AnimationBall.prototype.update = function(){
+        if(this.animationDone == false){
+            var dt = (new Date().getTime() - this.lastTime)/1000;
+            this.currentTime += dt;
+
+            this.lastTime = new Date().getTime();
+
+            if(this.currentTime > this.totalTime){
+                this.animationDone = true;
+            }
+        }
+
+    };
+
+    AnimationBall.prototype.draw = function( PositionVector, context){
+        context.beginPath();
+        context.fillStyle = this.color;
+        var rate = this.currentTime / this.totalTime;
+        var r = this.size * rate;
+        context.arc( PositionVector.x, PositionVector.y, r, 0, Math.PI *rate*rate* 2, false);
+        context.fill();
+        context.closePath();
+    };
+
+
 //    ----------------
 //    ----------------
 
@@ -36,39 +80,42 @@
 
     var contextClear = new Canvas_Context( wd, hg);
 
-    var myWall = new Wall();
-    myWall.beginVector = new Vector( wd * 0.1, hg * 0.2);
-    myWall.endVector = new Vector( wd * 0.9, hg * 0.9);
-    myWall.cal_normalize();
+    var positionVector = new Vector(wd/2 * Math.random(), hg/2 * Math.random());
+    var myAnimationBall = new AnimationBall();
 
-    var myParticle = new Particle();
-    myParticle.mass = 20;
-    myParticle.position = new Vector( wd/2, hg*0.1);
-    var randomTheta = (225 + 90 * Math.random())/180 * Math.PI;
-    myParticle.velocity = new Vector( 60 * Math.cos(randomTheta), 60 * Math.sin(randomTheta));
+    var particle01 = new Particle();
+    particle01.position = positionVector.copy();
+    particle01.init();
 
-    var myBall = new Ball();
+    console.log(particle01.velocity);
 
-    var gravity = new Vector( 0, 100);
 
-    loop();
+    loop01();
 
-    function loop(){
-//        console.log("loop");
+    function loop01(){
 //        clear the canvas
         contextClear.update_fill(myContext);
 
-//        calculation of the force
-        myParticle.setGravity(gravity);
-        myParticle.update();
+        myAnimationBall.update();
+        myAnimationBall.draw(positionVector, myContext);
 
-        myWall.checkBounce( myParticle, myBall.size);
+        if(myAnimationBall.animationDone == false){
+            requestAnimFrame(loop01);
+        }else{
+            set02();
+        }
+    }
 
-//        drawing
-        myBall.draw( myParticle.position, myContext);
-        myWall.draw( myContext);
+    function set02(){
+//        console.log("function02");
 
-        requestAnimFrame(loop);
+        loop02();
+    }
+
+    function loop02(){
+//        console.log("loop02");
+
+        requestAnimFrame(loop02);
     }
 
 })();
