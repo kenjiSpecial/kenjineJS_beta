@@ -17,6 +17,14 @@ var Particle = function(){
 };
 
 Particle.prototype.update = function(){
+    if(this.mass === undefined){
+        throw "particle's mass undefined."
+    }
+
+    if(this.force === undefined){
+        throw  "particle's force undefined."
+    }
+
     var dt = (new Date().getTime() - this.lastTime)/1000;
     this.sum_time += dt;
 
@@ -26,6 +34,7 @@ Particle.prototype.update = function(){
     //TODO if this is heavy, you sholud change the addScaledVector
     //setting the velocity
     this.velocity = this.velocity.addScaledVector( this.acceleration, dt);
+//    this.velocity = this.velocity.multipleVector(Math.pow(this.damping, dt));
 
     //setting the position
     this.position = this.position.addScaledVector( this.velocity, dt);
