@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test03::kenjineJS</title>
+    <script type="text/javascript">
+        (function () {
+            var Mammal = function (name) {
+                this.name = name;
+            };
+
+            Mammal.prototype.get_name = function () {
+                return this.name;
+            };
+
+            Mammal.prototype.says = function () {
+                return this.saying || '';
+            };
+
+            var myMammal = new Mammal('Herb the Mammal');
+            var name = myMammal.get_name();
+
+            console.log(name);
+
+        })();
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
