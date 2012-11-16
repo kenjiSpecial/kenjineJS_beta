@@ -4,7 +4,7 @@ var Wall = function(){
     this.normalizeVector = undefined;
     this.normalVector = undefined;
     this.length = undefined;
-    this.bouncing = -0.30;
+    this.bouncing = -1;
 
     this.wallAnimationDone = false;
 };
@@ -23,7 +23,7 @@ Wall.prototype.cal_normalize = function(){
 };
 
 Wall.prototype.checkBounce = function(myParticle, mySize){
-    var JudgeSize = mySize + 1;
+    var JudgeSize = mySize;
 
     if(this.normalizeVector === undefined){
         throw "this.normalized is undefined."
@@ -43,7 +43,7 @@ Wall.prototype.checkBounce = function(myParticle, mySize){
     }
 
 
-    if(distanceValue <= JudgeSize){
+    if(distanceValue < JudgeSize){
 
 //        console.log("bounce");
 //        console.log(distanceValue);
@@ -52,11 +52,20 @@ Wall.prototype.checkBounce = function(myParticle, mySize){
         var velocityVector = myParticle.velocity;
         var verticalVelocityValue = this.normalVector.dotProduct(velocityVector);
         verticalVelocityValue *= this.bouncing - 1;
-        myParticle.velocity = velocityVector.addScaledVector(this.normalVector, verticalVelocityValue);
 
         var hoseiDistance = JudgeSize - distanceValue;
+        if(this.normalVector.dotProduct(myParticle.velocity) > 0){
+            myParticle.position = myParticle.position.addScaledVector(this.normalVector,  -2 * hoseiDistance);
+        }else{
+            myParticle.position = myParticle.position.addScaledVector(this.normalVector,  2 * hoseiDistance);
+        }
+        myParticle.velocity = velocityVector.addScaledVector(this.normalVector, verticalVelocityValue);
+
+
+
 //        console.log(hoseiDistance);
-       myParticle.position = myParticle.position.addScaledVector(this.normalVector,  2 * hoseiDistance);
+
+
 
     }
 
@@ -70,5 +79,3 @@ Wall.prototype.draw = function( myContext){
     myContext.stroke();
     myContext.closePath();
 };
-
-Wall.prototype.animation
