@@ -61,12 +61,6 @@ Wall.prototype.checkBounce = function(myParticle, mySize){
         }
         myParticle.velocity = velocityVector.addScaledVector(this.normalVector, verticalVelocityValue);
 
-
-
-//        console.log(hoseiDistance);
-
-
-
     }
 
 };

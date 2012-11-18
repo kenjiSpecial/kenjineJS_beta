@@ -6,22 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-(function(){
-    var Ball = function(){
-        this.color = "#999999";
-        this.size = 12;
-    };
+(function () {
 
-    Ball.prototype.draw = function(ballPosition, myContext){
-        myContext.beginPath();
-        myContext.fillStyle = this.color;
-        myContext.arc(ballPosition.x, ballPosition.y, this.size, 0, 2 * Math.PI, false);
-        myContext.fill();
-        myContext.closePath();
-    };
-
-//    ----------------
-//    ----------------
+// default begin
 
     var wd = 600;
     var hg = 400;
@@ -34,70 +21,86 @@
     myContext.fillStyle = "#ffffff";
     myContext.fillRect(0, 0, wd, hg);
 
-    var contextClear = new Canvas_Context( wd, hg);
+//    default end
+
+    var contextClear = new Canvas_Context(wd, hg);
 
     var myWall = new Wall();
-    myWall.beginVector = new Vector( wd * 0.1, hg * 0.6);
-    myWall.endVector = new Vector( wd * 0.8, hg * 0.2);
+    myWall.beginVector = new Vector(0, 0);
+    myWall.endVector = new Vector(0, hg);
     myWall.cal_normalize();
-    myWall.bouncing = -0.8;
+    myWall.bouncing = -1;
 
     var myWall02 = new Wall();
-    myWall02.beginVector = new Vector( 0, 0);
-    myWall02.endVector = new Vector( 0, hg);
+    myWall02.beginVector = new Vector(wd, 0);
+    myWall02.endVector = new Vector(wd, hg);
     myWall02.cal_normalize();
-    myWall02.bouncing = -0.8;
+    myWall02.bouncing = -1;
 
-    var myWall03 = new Wall();
-    myWall03.beginVector = new Vector( 0, hg * 0.8);
-    myWall03.endVector = new Vector( wd, hg);
-    myWall03.cal_normalize();
-    myWall03.bouncing = -0.8;
+    var myFloor = new Wall();
+    myFloor.beginVector = new Vector(0, hg * 0.8);
+    myFloor.endVector = new Vector(wd, hg * 0.8);
 
-    var particleNum = 200;
-    var particles = [];
 
-    for(var i = 0; i < particleNum; i++){
+    var Circle_case01 = new Circle();
+    Circle_case01.size = 20;
+    Circle_case01.mass = 20;
+    Circle_case01.velocity = new Vector(100, 0);
+    Circle_case01.position = new Vector(wd * 0.2, hg * 0.8 - Circle_case01.size);
+    Circle_case01.init();
 
-        var myParticle = new Particle();
-        myParticle.mass = 20;
-        myParticle.position = new Vector( wd/2, hg*0.1);
-        var randomTheta = ( 0 + 180 * Math.random())/180 * Math.PI;
-        myParticle.velocity = new Vector( 160 * Math.cos(randomTheta), 160 * Math.sin(randomTheta));
+    var Circle_case02 = new Circle();
+    Circle_case02.size = 30;
+    Circle_case02.mass = 30;
+    Circle_case02.velocity = new Vector(-120, 0);
+    Circle_case02.position = new Vector( wd * 0.8, hg * 0.8 - Circle_case02.size);
+    Circle_case02.init();
 
-        particles.push(myParticle);
+    var Circle_case03 = new Circle();
+    Circle_case03.size = 50;
+    Circle_case03.mass = 50;
+
+    Circle_case03.velocity = new Vector(0, 0);
+    Circle_case03.position = new Vector(wd * .5, hg * 0.8 - Circle_case03.size);
+    Circle_case03.init();
+
+
+    init();
+
+    function init() {
+
+//        initializing the timer
+        Circle_case01.initTime();
+        Circle_case02.initTime();
+
+//        starting the loop
+        loop();
     }
 
-
-    var myBall = new Ball();
-
-    var gravity = new Vector( 0, 100);
-
-    loop();
-
-    function loop(){
-//        console.log("loop");
+    function loop() {
 //        clear the canvas
         contextClear.update_fill(myContext);
 
 //        calculation of the force
-        for(var i =0; i < particleNum; i++){
-            var myParticle = particles[i];
+        Circle_case01.update();
+        Circle_case02.update();
+        Circle_case03.update();
 
-            myParticle.setGravity(gravity);
-            myParticle.update();
+        Circle_case01.collision_detect_one(Circle_case02);
+        Circle_case01.collision_detect_one(Circle_case03);
+        Circle_case02.collision_detect_one(Circle_case03);
 
-            myWall.checkBounce( myParticle, myBall.size);
-            myWall02.checkBounce( myParticle, myBall.size);
-            myWall03.checkBounce( myParticle, myBall.size);
+        myWall.checkBounce(Circle_case01, Circle_case01.size);
+//        myWall02.checkBounce(Circle_case03, Circle_case03.size);
 
-            myBall.draw( myParticle.position, myContext);
-        }
+        myWall02.checkBounce(Circle_case02, Circle_case02.size);
+
 
 //        drawing
-
-        myWall.draw( myContext);
-        myWall03.draw( myContext);
+        myFloor.draw(myContext);
+        Circle_case01.draw(myContext);
+        Circle_case02.draw(myContext);
+        Circle_case03.draw(myContext);
 
         requestAnimFrame(loop);
     }
