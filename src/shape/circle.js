@@ -102,7 +102,12 @@ Circle.prototype.collision_detect = function (Circle) {
         var dt;
 
         var sumVelocity = circleProjectionVal - thisProjectionVal;
+//        var absVelocity = Math.abs(circleProjectionVal) + Math.abs(thisProjectionVal);
+//        console.log("circleProjectionVal: " + circleProjectionVal + ", thisProjectionVal: " + thisProjectionVal);
+//        console.log("sumVelocity: " + sumVelocity);
+        console.log("circleSumR: "+circleSumR);
         var L = circleSumR - distance;
+//        console.log("L: " + L);
 
         //calculation the time
         dt = L / sumVelocity;
@@ -112,12 +117,16 @@ Circle.prototype.collision_detect = function (Circle) {
         } else if (thisProjectionVal == 0) {
             Circle.position = Circle.position.addScaledVector(collideNormalVector, -L);
         } else {
+//            var circleBackDistance = L * Math.abs(circleProjectionVal) / absVelocity;
 
-            var circleBackDistance = L * circleProjectionVal / sumVelocity;
-
-            Circle.position = Circle.position.addScaledVector(collideNormalVector, -L+circleBackDistance);
-            this.position = this.position.addScaledVector(collideNormalVector, -circleBackDistance);
+//            console.log("circleBackDistance: "+circleBackDistance);
+            Circle.position = Circle.position.addScaledVector(collideNormalVector, - dt * circleProjectionVal);
+            this.position = this.position.addScaledVector(collideNormalVector, - dt * thisProjectionVal);
         }
+
+        console.log("distance: " + distance);
+        var newDistance =Circle.position.edge(this.position).getMagnitude();
+        console.log("newDistance: "+ newDistance);
 
 
         //calculation the speed of the circle
@@ -128,10 +137,23 @@ Circle.prototype.collision_detect = function (Circle) {
         var newThisVelocityValue = (subtractMass * thisProjectionVal + 2 * this.mass * circleProjectionVal) / sumMass;
         var newCircleVelocityValue = thisProjectionVal + circleProjectionVal - newThisVelocityValue;
 
+//        var sum = thisProjectionVal + circleProjectionVal;
+//        console.log('before: thisVal: ' + thisProjectionVal + ", circleVal: " + circleProjectionVal + ", sum: " + sum);
+//        sum = newThisVelocityValue + newCircleVelocityValue;
+//        console.log('after: thisVal: ' + newThisVelocityValue + ", circleVal: " + newCircleVelocityValue+  ", sum: " + sum);
+
+
         this.velocity = this.velocity.addScaledVector(collideNormalVector, newThisVelocityValue - thisProjectionVal);
         Circle.velocity = Circle.velocity.addScaledVector(collideNormalVector, newCircleVelocityValue - circleProjectionVal);
 
-        this.position = this.position.addScaledVector(this.velocity, dt);
-        Circle.position = Circle.position.addScaledVector(Circle.velocity, dt);
+        this.position = this.position.addScaledVector(collideNormalVector, dt*newThisVelocityValue);
+        Circle.position = Circle.position.addScaledVector(collideNormalVector, dt*newCircleVelocityValue);
+
+        newDistance =Circle.position.edge(this.position).getMagnitude();
+        console.log("newDistance: "+ newDistance);
+
+        console.log("");
+        console.log("");
+
     }
 };

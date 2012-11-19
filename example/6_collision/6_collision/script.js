@@ -55,6 +55,16 @@
 
     var gravity = new Vector(0, 50);
 
+    myCanvas.onclick = function(){
+//        alert("click");
+        for(var i = 0; i < circles.length; i++){
+            console.log(i);
+            console.log("velocity: "+circles[i].velocity.x + ", " + circles[i].velocity.y);
+            console.log("position: "+circles[i].position.x + ", " + circles[i].position.y);
+        }
+
+        console.log("");
+    };
 
     init();
 
@@ -73,19 +83,18 @@
         circleNum--;
 
         var Circle_case01 = new Circle();
-        Circle_case01.size = 10 + (40 * Math.random())|0;
-        Circle_case01.mass = 10 + (40 * Math.random())|0;
-        var randomTheta = Math.PI * (1.25 + .5 * Math.random());
+        Circle_case01.size = 60 + (10 * Math.random())|0;
+        Circle_case01.mass = 60 + (10 * Math.random())|0;
+        var randomTheta = Math.PI * ( 0.4 + .2 * Math.random());
         Circle_case01.velocity = new Vector(100 * Math.cos(randomTheta), 100 * Math.sin(randomTheta));
         Circle_case01.position = new Vector(wd/2, hg * 0.2);
         Circle_case01.init();
         Circle_case01.initTime();
 
         circles.push(Circle_case01);
-        console.log(circles.length);
 
         if(circleNum > 0) {
-            setTimeout(countDown, 2000);
+            setTimeout(countDown, 600);
         }
     }
 
@@ -121,7 +130,6 @@
             circles[i].draw(myContext);
         }
 
-        console.log(circles.length);
 
         requestAnimFrame(loop);
     }
