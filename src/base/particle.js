@@ -67,6 +67,8 @@ Particle.prototype.init = function(){
     if(this.force === undefined){
         this.force = new Vector( 0, 0);
     }
+
+//    console.log("particle init");
 };
 
 Particle.prototype.setGravity = function(gravity){

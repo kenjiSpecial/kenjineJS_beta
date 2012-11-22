@@ -42,7 +42,9 @@ RectangleRB.prototype.draw = function(myContext){
     myContext.closePath();
 };
 
-RectangleRB.prototype.initPolygon = function(){
+RectangleRB.prototype.init = function(){
+    RigidBody.prototype.init.call(this);
+
     if(this.mass == undefined){
         throw "Polygon's mass is undefined";
     }

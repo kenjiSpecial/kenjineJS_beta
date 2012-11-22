@@ -11,7 +11,6 @@
     var wd = 600;
     var hg = 400;
     var myCanvas = document.getElementById("myCanvas");
-//    var myCanvas = $("#myCanvas")[0];
     myCanvas.width = wd;
     myCanvas.height = hg;
 
@@ -21,26 +20,50 @@
     myContext.fillRect(0, 0, wd, hg);
 
     var contextClear = new Canvas_Context(wd, hg);
-//    var firstPos = new Vector(0, hg * 0.2 - 40);
-
 
     var gravity = new Vector(0, 40);
 
     var myWall = new Wall();
-    myWall.beginVector = new Vector(0, hg * 0.2);
-    myWall.endVector = new Vector(wd, hg * 0.8);
+    myWall.beginVector = new Vector(0, hg * 0.9);
+    myWall.endVector = new Vector(wd, hg * 0.1);
     myWall.bouncing = -0.2;
     myWall.cal_normalize();
 
     var myWallEdgeVector = myWall.endVector.edge(myWall.beginVector);
     var myWallNormalVector = myWallEdgeVector.normal();
 
-    var firstPos = myWall.beginVector.addScaledVector(myWallEdgeVector, 0.2).addScaledVector(myWallNormalVector, 40);
-    var myCircle = new CircleRB(firstPos, 40);
-    myCircle.initCircle();
+    var firstPos = myWall.beginVector.addScaledVector(myWallEdgeVector, 0.9).addScaledVector(myWallNormalVector, 10);
+    var myCircle = new CircleRB(firstPos, 10);
+    myCircle.mass = 1;
+    myCircle.momentInteria = .5 * myCircle.rad * myCircle.rad * myCircle.mass;
+//    console.log(myCircle.momentInteria);
+    myCircle.init();
 
-    myCircle.draw(myContext);
-    myWall.draw(myContext);
+    var nextPos = myWall.beginVector.addScaledVector(myWallEdgeVector, 0.4).addScaledVector(myWallNormalVector, 80);
+    var bigCircle = new CircleRB(nextPos, 80);
+    bigCircle.mass = 40;
+    bigCircle.momentInteria = .5 * bigCircle.rad * bigCircle.rad * bigCircle.mass;
+    bigCircle.init();
 
+    loop();
+
+    function loop(){
+        contextClear.update_fill(myContext);
+
+        myCircle.setGravity(gravity);
+        myWall.calcRBForce(myCircle);
+
+        bigCircle.setGravity(gravity);
+        myWall.calcRBForce(bigCircle);
+
+        myCircle.update();
+        bigCircle.update();
+
+        myWall.draw(myContext);
+        myCircle.draw(myContext);
+        bigCircle.draw(myContext);
+
+        requestAnimFrame(loop);
+    }
 
 })();

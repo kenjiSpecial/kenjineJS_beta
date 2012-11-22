@@ -25,7 +25,6 @@
     myRectangleRB.mass = 10;
     myRectangleRB.momentInteria = 50;
     myRectangleRB.velocity = new Vector(0, 10);
-    myRectangleRB.initPolygon();
     myRectangleRB.init();
     myRectangleRB.fillColor = "#000";
 

@@ -25,6 +25,7 @@ var CircleRB = function( position, rad){
 
 CircleRB.prototype = new RigidBody();
 
+
 CircleRB.prototype.draw = function(myContext){
 //    drawing the circle
     myContext.beginPath();
@@ -43,16 +44,9 @@ CircleRB.prototype.draw = function(myContext){
     }
 };
 
-CircleRB.prototype.initCircle = function(){
-    if(this.mass === undefined){
-        this.mass = 1;
-        console.log("this.mass is undefined.");
-    }
+CircleRB.prototype.init = function(){
+    RigidBody.prototype.init.call(this);
 
-    if(this.posVector === undefined){
-        this.posVector = new Vector( 0, 0);
-        console.log("this.posVector is undefined.")
-    }
 
     for(var i = 0; i < 8; i++){
         if(i == 0){
@@ -102,15 +96,18 @@ CircleRB.prototype.update = function(){
 
     //setting the acceleration
     this.acceleration = this.force.multiple(1/this.mass);
+    this.angAcceleration = this.torque / this.momentInteria;
 
     //TODO if this is heavy, you sholud change the addScaledVector
     //setting the velocity
     this.velocity = this.velocity.addScaledVector( this.acceleration, dt);
+    this.angVelocity += dt * this.angAcceleration;
 //    this.velocity = this.velocity.multipleVector(Math.pow(this.damping, dt));
 
     //setting the position
     this.posVector = this.posVector.addScaledVector( this.velocity, dt);
     this.rotation += dt * this.angVelocity;
+
 
 //        calculation of the vertex each position;
     var matrix = new Matrix();
