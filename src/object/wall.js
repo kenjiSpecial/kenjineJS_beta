@@ -43,11 +43,8 @@ Wall.prototype.checkBounce = function (myParticle, mySize) {
         distanceValue = Math.abs(particleVector.crossProduct(this.normalizeVector));
     }
 
-    console.log(distanceValue);
-    console.log(JudgeSize);
 
     if (distanceValue < JudgeSize) {
-        console.log("bounce");
 
         var velocityVector = myParticle.velocity;
         var verticalVelocityValue = this.normalVector.dotProduct(velocityVector);
@@ -68,6 +65,37 @@ Wall.prototype.checkBounce = function (myParticle, mySize) {
 };
 
 Wall.prototype.calcRBForce = function(myCircleRB){
+    var gravityVal = myCircleRB.force.getMagnitude();
+    var wallNormalForce = myCircleRB.force.dotProduct(this.normalVector);
+
+    var coeff = Math.abs(wallNormalForce)/(1 + (myCircleRB.mass * myCircleRB.rad * myCircleRB.rad )/myCircleRB.momentInteria);
+//    console.log("coeff: " + coeff);
+
+    //calculating the force
+    var wallNormalForceVector = this.normalVector.multipleVector(- wallNormalForce);
+
+    // the force of the friction
+    var frictionForeVector = this.normalizeVector.multipleVector(-coeff);
+
+
+    //setting the force to ball
+    myCircleRB.force = myCircleRB.force.addVector(wallNormalForceVector);
+    myCircleRB.force = myCircleRB.force.addVector(frictionForeVector);
+
+    var frictionVal = this.normalizeVector.dotProduct(frictionForeVector);
+
+    var checkVal = this.normalizeVector.dotProduct(myCircleRB.velocity)
+
+    if(checkVal > 0){
+        myCircleRB.torque = -frictionVal * myCircleRB.rad;
+    }else if(checkVal < 0){
+        myCircleRB.torque = frictionVal * myCircleRB.rad;
+    }else{
+        myCircleRB.torque = 0;
+    }
+//    console.log(frictionVal);
+
+
 
 };
 
@@ -75,7 +103,7 @@ Wall.prototype.checkCircleRBBounce = function (myCircle) {
     var JudgeSize = myCircle.rad;
 
     if (this.normalizeVector === undefined) {
-        throw "this.normalized is undefined."
+        throw "normalized is undefined."
     }
 
     var circlePositionVector = myCircle.posVector.subtractVector(this.beginVector);
