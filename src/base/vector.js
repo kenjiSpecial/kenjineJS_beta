@@ -54,6 +54,11 @@ Vector.prototype.addScaledVector = function( vector, val){
     return newVector;
 };
 
+Vector.prototype.scaleBy = function(val){
+    this.x *= val;
+    this.y *= val;
+};
+
 Vector.prototype.multiple = function(val){
     var temVector = new Vector(this.x, this.y);
 
@@ -97,6 +102,20 @@ Vector.prototype.normalize = function(){
 
     return v;
 };
+
+Vector.prototype.perp = function(val){
+    var vec = new Vector(this.y, -this.x);
+    var length = vec.getMagnitude();
+
+    if(length > 0){
+        vec.scaleBy(val/length);
+    }else{
+        vec = new Vector(0, 0);
+    }
+
+    return vec;
+};
+
 
 Vector.prototype.getMagnitude = function(){
     return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));

@@ -24,27 +24,37 @@
 
     var myWall = new Wall();
     myWall.beginVector = new Vector(0, hg * 0.9);
-    myWall.endVector = new Vector(wd, hg * 0.1);
+    myWall.endVector = new Vector(wd, hg * 0.9);
     myWall.bouncing = -0.2;
     myWall.cal_normalize();
 
     recPosition = new Vector( wd/2, hg/2);
     var myRectangleRB = new RectangleRB( recPosition, 100, 100);
     myRectangleRB.mass = 10;
-    myRectangleRB.momentInteria = 50;
+    myRectangleRB.momentInteria = 5000;
     myRectangleRB.velocity = new Vector(0, 100);
     myRectangleRB.init();
     myRectangleRB.fillColor = "#000";
     myRectangleRB.rotation = Math.PI/6;
     myRectangleRB.update();
 
+
+
     myRectangleRB.angVelocity = 0;
-    myRectangleRB.draw(myContext);
 
     loop();
 
     function loop(){
-        
+        contextClear.update_fill(myContext);
+
+        myRectangleRB.setGravity(gravity);
+
+        myRectangleRB.update();
+
+        myRectangleRB.draw(myContext);
+        myWall.draw(myContext);
+
+        myWall.checkRectangleRBBounce(myRectangleRB);
 
         requestAnimFrame(loop);
     }

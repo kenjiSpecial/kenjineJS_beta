@@ -28,7 +28,6 @@ RectangleRB.prototype.draw = function(myContext){
     }
     myContext.lineTo( this.calculatedVertices[0].x, this.calculatedVertices[0].y);
 
-
     if(this.fillColor !== undefined){
         myContext.fillStyle = this.fillColor;
         myContext.fill();
@@ -66,7 +65,7 @@ RectangleRB.prototype.init = function(){
         }
     }
 
-    for(var i = 0; i < 4; i++){
+    for( i = 0; i < 4; i++){
         this.calculatedVertices.push(this.posVector.addVector(this.vertices[i]));
     }
 };
@@ -109,6 +108,7 @@ RectangleRB.prototype.update = function(){
     matrix.rotate(this.rotation);
 
 
+
     for(var i = 0; i < this.vertices.length; i++){
         this.calculatedVertices[i] = matrix.apply_Vector(this.vertices[i]);
         this.calculatedVertices[i] = this.calculatedVertices[i].addVector(this.posVector);
@@ -116,3 +116,4 @@ RectangleRB.prototype.update = function(){
 
     this.lastTime = new Date().getTime();
 };
+

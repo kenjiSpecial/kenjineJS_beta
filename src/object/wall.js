@@ -8,6 +8,8 @@ var Wall = function () {
 
     this.wallAnimationDone = false;
     this.bouncing = true;
+
+    this.cr = 0.4;
 };
 
 Wall.prototype.cal_normalize = function () {
@@ -21,6 +23,8 @@ Wall.prototype.cal_normalize = function () {
     this.length = this.endVector.subtractVector(this.beginVector).getMagnitude();
     this.normalizeVector = this.endVector.subtractVector(this.beginVector).normalize();
     this.normalVector = this.normalizeVector.normal();
+
+    this.prevCheck = false;
 };
 
 Wall.prototype.checkBounce = function (myParticle, mySize) {
@@ -58,10 +62,7 @@ Wall.prototype.checkBounce = function (myParticle, mySize) {
         }
 
         myParticle.velocity = velocityVector.addScaledVector(this.normalVector, verticalVelocityValue);
-
-
     }
-
 };
 
 Wall.prototype.calcRBForce = function(myCircleRB){
@@ -84,7 +85,7 @@ Wall.prototype.calcRBForce = function(myCircleRB){
 
     var frictionVal = this.normalizeVector.dotProduct(frictionForeVector);
 
-    var checkVal = this.normalizeVector.dotProduct(myCircleRB.velocity)
+    var checkVal = this.normalizeVector.dotProduct(myCircleRB.velocity);
 
     if(checkVal > 0){
         myCircleRB.torque = -frictionVal * myCircleRB.rad;
@@ -95,7 +96,44 @@ Wall.prototype.calcRBForce = function(myCircleRB){
     }
 //    console.log(frictionVal);
 
+};
 
+Wall.prototype.checkRectangleRBBounce = function(myRectangleRB){
+
+    var torque = 0;
+//    torque += -k * myRectangleRB.angVelocity;
+
+    var testCollision = false;
+    var j;
+
+    for(var i = 0; i < myRectangleRB.calculatedVertices.length; i++){
+//        console.log(myRectangleRB.calculatedVertices[i].edge(this.beginVector).dotProduct(this.normalizeVector));
+        var edgeVector = myRectangleRB.calculatedVertices[i].edge(this.beginVector);
+        if(edgeVector.dotProduct(this.normalVector) < 0 ){
+            testCollision = true;
+            j = i;
+
+        }
+    }
+
+    //Calculation
+    if(testCollision){
+        var distance = myRectangleRB.calculatedVertices[j].y - this.beginVector.y;
+        myRectangleRB.posVector.subtract(0, 2 * distance);
+
+        var rp1Vector = myRectangleRB.calculatedVertices[j].edge(myRectangleRB.posVector);
+        var vp1Vector = myRectangleRB.velocity.addVector(rp1Vector.perp(- rp1Vector.getMagnitude() * myRectangleRB.angVelocity));
+
+        var rp1XNormal = rp1Vector.crossProduct(this.normalVector);
+        var impulse = - (1+ this.cr) * vp1Vector.dotProduct(this.normalVector) / (1/myRectangleRB.mass + rp1XNormal * rp1XNormal / myRectangleRB.momentInteria);
+
+        myRectangleRB.velocity = myRectangleRB.velocity.addVector( this.normalVector.multipleVector(impulse/myRectangleRB.mass));
+        myRectangleRB.angVelocity += rp1Vector.crossProduct(this.normalVector) * impulse/ myRectangleRB.momentInteria;
+    }
+
+
+
+    this.prevTestCollision = testCollision;
 
 };
 
