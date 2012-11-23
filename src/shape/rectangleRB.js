@@ -79,6 +79,21 @@ RectangleRB.prototype.updateAngularVelocity = function(){
     this.angVelocity += this.torque / this.momentInteria;
 };
 
+RectangleRB.prototype.maxVertex = function(){
+    var maxLength = 0;
+
+    for(var i = 0; i < this.calculatedVertices.length; i++){
+        var tempVector = this.calculatedVertices[i].subtractVector(this.posVector);
+        var tempLength = tempVector.getMagnitude();
+
+        if(tempLength > maxLength){
+            maxLength = tempLength;
+        }
+    }
+
+    return maxLength;
+};
+
 RectangleRB.prototype.update = function(){
     if(this.mass === undefined){
         throw "particle's mass undefined."

@@ -56,6 +56,8 @@
         myRectangleRB01.draw(myContext);
         myRectangleRB02.draw(myContext);
 
+        RectangleBetweenForce(myRectangleRB01, myRectangleRB02);
+
         //repeat loop() function
         requestAnimFrame(loop);
     }
