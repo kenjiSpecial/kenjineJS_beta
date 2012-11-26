@@ -40,6 +40,7 @@
 
 
 
+
     myRectangleRB.angVelocity = 0;
 
     loop();
@@ -51,10 +52,14 @@
 
         myRectangleRB.update();
 
+        myWall.checkRectangleRBBounce(myRectangleRB);
+
+
         myRectangleRB.draw(myContext);
         myWall.draw(myContext);
 
-        myWall.checkRectangleRBBounce(myRectangleRB);
+
+
 
         requestAnimFrame(loop);
     }

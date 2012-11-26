@@ -1,3 +1,7 @@
+/**
+ @param {Vector} _vector
+ */
+
 var Arrow = function( _vector){
     this.vector = _vector;
     this.startVec = undefined;
