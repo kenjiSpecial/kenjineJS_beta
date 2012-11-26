@@ -23,6 +23,7 @@
     var wd = 600;
     var hg = 400;
     var myCanvas = document.getElementById("myCanvas");
+
     myCanvas.width = wd;
     myCanvas.height = hg;
 
@@ -69,7 +70,7 @@
 
 
 
-    RectangleBetweenForce(myRectangleRB01, myRectangleRB02, myContext);
+//    RectangleBetweenForce(myRectangleRB01, myRectangleRB02, myContext);
 
     $("canvas").click(function(){
 //        alert("click");
@@ -92,6 +93,7 @@
         myRectangleRB02.update();
 
         RectangleBetweenForce(myRectangleRB01, myRectangleRB02);
+        RectangleBetweenForce(myRectangleRB02, myRectangleRB01);
 
         myRectangleRB01.draw(myContext);
         myRectangleRB02.draw(myContext);
