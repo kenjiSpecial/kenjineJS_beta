@@ -64,12 +64,46 @@ Rope.prototype.update = function(){
     }
 };
 
-Rope.prototype.calcForce = function(){
-//    TODO calculation
+Rope.prototype.setGravity = function(g){
+    for(var i = 1; i < this.num - 1; i++){
+        this.particles[i].setGravity(g);
+    }
 };
 
+Rope.prototype.calcForce = function(){
+//    TODO calculation
+    var kDamping = 6;
+    var springLength = 6;
+    var kSpring = 60;
+
+    for(var i = 1; i < this.num-1; i++){
+//        var force1 = -this.k * this.particles[i].position.subtractVector(this.particles[i - 1].position).getMagnitude()
+        var velocityVector = this.particles[i].velocity.multipleVector(2).subtractVector(this.particles[i - 1].velocity).subtractVector(this.particles[i + 1].velocity);
+        var dampingForce = velocityVector.multipleVector(-1 * kDamping);
+
+        var displacePrevVector = this.particles[i].position.subtractVector(this.particles[i - 1].position);
+        var displaceNextVector = this.particles[i].position.subtractVector(this.particles[i + 1].position);
+
+        var lengthPrevVector = displacePrevVector.multipleVector(springLength/displacePrevVector.getMagnitude());
+        var extensionPrevVector = displacePrevVector.subtractVector(lengthPrevVector);
+        var extensionPrevForce = extensionPrevVector.multipleVector( -1 * kSpring);
+
+        var lengthNextVector = displaceNextVector.multipleVector(springLength/displaceNextVector.getMagnitude());
+        var extensionNextVector = displaceNextVector.subtractVector(lengthNextVector);
+        var extensionNextForce = extensionNextVector.multipleVector( -1 * kSpring);
+
+        this.particles[i].force = this.particles[i].force.addVector(dampingForce).addVector(extensionPrevForce).addVector(extensionNextForce);
+    }
+
+};
+
+
+
 Rope.prototype.draw = function(myContext){
-    console.log("draw");
+//    for(var i = 0; i < this.num - 1; i++){
+
+//    }
+
     for(var i = 0; i < this.num - 1; i++){
         myContext.beginPath();
         myContext.strokeStyle = "#666666";
@@ -79,6 +113,8 @@ Rope.prototype.draw = function(myContext){
         myContext.stroke();
         myContext.closePath();
     }
+
+
 
     for( i = 0; i < this.num; i++){
         myContext.beginPath();

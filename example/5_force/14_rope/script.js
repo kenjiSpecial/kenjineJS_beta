@@ -8,7 +8,7 @@
 
 
 
-(function(){
+(function () {
 
     var wd = 600;
     var hg = 400;
@@ -25,11 +25,33 @@
     var myRope = new Rope(wd * 0.05, hg * 0.2, wd * 0.9, 20);
     myRope.init();
 
-    myRope.draw(myContext);
+//    myRope.draw(myContext);
+    var contextClear = new Canvas_Context(wd, hg);
+
+    var gravity = new Vector(0, 10);
+
+    setInterval(function () {
+
+        var randomNum = ((myRope.num - 2) * Math.random() + 1) | 0;
+
+        myRope.particles[randomNum].force = myRope.particles[randomNum].force.addVector(new Vector(0, -100000));
+        myRope.update();
+
+    }, 2000);
 
     loop();
 
-    function loop(){
+    function loop() {
+        contextClear.update_fill(myContext);
+
+//        ----------
+
+        myRope.setGravity(gravity);
+        myRope.calcForce();
+
+        myRope.update();
+
+        myRope.draw(myContext);
 
 
         requestAnimFrame(loop);

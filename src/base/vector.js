@@ -97,8 +97,14 @@ Vector.prototype.normalize = function(){
     var v = new Vector();
     var m = this.getMagnitude();
 
-    v.x = this.x / m;
-    v.y = this.y / m;
+    if(m > 0){
+        v.x = this.x / m;
+        v.y = this.y / m;
+
+    }else{
+        v.x = 0;
+        v.y = 0;
+    }
 
     return v;
 };
