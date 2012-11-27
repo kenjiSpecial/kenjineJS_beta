@@ -119,8 +119,6 @@ var RectangleBetweenForce = function( myRectangle01, myRectangle02){
                 console.log(impulase * invm1);
 //                console.log(myRectangle01.velocity);
                 myRectangle01.velocity = myRectangle01.velocity.addVector(normal.multiple(impulase * invm1));
-//                console.log(normal.multiple(impulase * invm1));
-//                console.log(myRectangle01.velocity);
                 myRectangle01.angVelocity += rp1.crossProduct(normal) * impulase * invT1;
 
                 myRectangle02.velocity = myRectangle02.velocity.addVector(normal.multiple(impulase * invm2));
