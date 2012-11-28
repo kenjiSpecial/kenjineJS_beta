@@ -1,0 +1,72 @@
+@import "compass/css3";
+$imgURL:  "../../example/common/img/dark_wood.png";
+
+$defaultFontSize: 12px;
+
+body{
+  font-size: $defaultFontSize;
+  font-family: 'Lato', sans-serif;
+  background-image: url($imgURL);
+}
+
+div#wrapper{
+
+}
+
+
+
+aside{
+  float: left;
+  width: 240px;
+  padding-right: 40px;
+
+  border-right: 1px solid rgba(0, 0, 0, 1);
+  @include box-shadow(rgba( 255, 255, 255, .1) -1px 0 0 inset);
+
+  ul.chapter{
+    margin-bottom: 50px;
+
+    li.title{
+      list-style: none;
+
+      font-size: 18px;
+      color: #ffffff;
+      padding-bottom: 4px;
+      margin-bottom: 15px;
+
+      border-bottom: 1px solid rgba(0, 0, 0, 1);
+      @include box-shadow(rgba( 255, 255, 255, .08) 0 1px 0 );
+    }
+
+    ul.smallCh{
+      margin: 0;
+      padding: 0;
+
+      li{
+        color: #cccccc;
+        list-style: none;
+        margin-bottom: 6px;
+
+        a{
+          color: #aaaaaa;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+article{
+  margin-left: 40px;
+  float:left;
+  iframe{
+    width: 720px;
+    height: 1200px;
+
+  }
+}
+
+/* mixin */

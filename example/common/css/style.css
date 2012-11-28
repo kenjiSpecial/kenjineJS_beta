@@ -1,13 +1,13 @@
 body {
-    background-color: #999;
+    /*background-color: #999;*/
     color: #ffffff;
-    background-image: url("../img/dark_wood.png");
+    /*background-image: url("../img/dark_wood.png");*/
     font-size: 12px;
 }
 
 div#container {
     width: 600px;
-    margin: 50px auto;
+    margin: 0;
 }
 
 canvas {
