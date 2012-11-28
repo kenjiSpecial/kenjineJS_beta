@@ -22,7 +22,7 @@
 
     var AnimationBall = function(){
         this.color = "#000";
-        this.size = 5;
+        this.size = 3;
 
         this.lastTime = new Date().getTime();
 
@@ -175,7 +175,7 @@
 
 
     var myBall01 = new Ball();
-    myBall01.size = 5;
+    myBall01.size = 3;
 
     var gravity = new Vector( 0, 50);
 
@@ -190,8 +190,9 @@
     for(var i = 0; i < particleNum; i++){
         var testParticle = new Particle();
         testParticle.position = new Vector( wd/2, hg * 0.2);
-        var randomTestTheta = (225 + 90 * Math.random())/180 * Math.PI;
-        testParticle.velocity = new Vector( 100 * Math.cos(randomTestTheta), 100 * Math.sin(randomTestTheta));
+        var randomTestTheta = (360 * Math.random())/180 * Math.PI;
+        var velocity = 40 + 80 * Math.random();
+        testParticle.velocity = new Vector( velocity * Math.cos(randomTestTheta), velocity * Math.sin(randomTestTheta));
         testParticle.init();
 
         particles.push(testParticle);
@@ -199,7 +200,7 @@
 
 
     var testBll = new Ball();
-    testBll.size = 15;
+    testBll.size = 5;
 
     loop01();
 

@@ -1,6 +1,6 @@
 
 //Friction model
-// TODO think about how the force should # see the 4_force/2_contact_force02
+// TODO think about how the force should # see the 5_force/2_contact_force02
 
 var Slope = function () {
     this.start_vector = new Vector(40, 80);

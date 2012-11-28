@@ -1,0 +1,61 @@
+/* line 6, ../scss/style.scss */
+body {
+  font-size: 12px;
+  font-family: 'Lato', sans-serif;
+  background-image: url("../../example/common/img/dark_wood.png");
+}
+
+/* line 18, ../scss/style.scss */
+aside {
+  float: left;
+  width: 240px;
+  padding-right: 40px;
+  border-right: 1px solid black;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.1) -1px 0 0 inset;
+  -moz-box-shadow: rgba(255, 255, 255, 0.1) -1px 0 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.1) -1px 0 0 inset;
+}
+/* line 26, ../scss/style.scss */
+aside ul.chapter {
+  margin-bottom: 50px;
+}
+/* line 29, ../scss/style.scss */
+aside ul.chapter li.title {
+  list-style: none;
+  font-size: 18px;
+  color: #ffffff;
+  padding-bottom: 4px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid black;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0;
+}
+/* line 41, ../scss/style.scss */
+aside ul.chapter ul.smallCh {
+  margin: 0;
+  padding: 0;
+}
+/* line 45, ../scss/style.scss */
+aside ul.chapter ul.smallCh li {
+  color: #cccccc;
+  list-style: none;
+  margin-bottom: 6px;
+}
+/* line 50, ../scss/style.scss */
+aside ul.chapter ul.smallCh li a {
+  color: #aaaaaa;
+}
+
+/* line 62, ../scss/style.scss */
+article {
+  margin-left: 40px;
+  float: left;
+}
+/* line 65, ../scss/style.scss */
+article iframe {
+  width: 720px;
+  height: 1200px;
+}
+
+/* mixin */
