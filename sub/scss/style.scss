@@ -1,21 +1,125 @@
 @import "compass/css3";
-$imgURL:  "../../example/common/img/dark_wood.png";
+
+$imgURL: "../../example/common/img/dark_wood.png";
 
 $defaultFontSize: 12px;
+$shadowVal: 120;
 
-body{
+body {
   font-size: $defaultFontSize;
   font-family: 'Lato', sans-serif;
   background-image: url($imgURL);
 }
 
-div#wrapper{
+div#wrapper {
+  width: 960px;
+  margin: 40px auto 80px;
+  font-weight: bold;
+
+  //font-weight: ;
+  //margin-left: 60px;
+}
+
+header {
+  color: #ffffff;
+
+  h1 {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+    0 6px 1px rgba($shadowVal,$shadowVal,$shadowVal,.1),
+    0 0 5px rgba($shadowVal,$shadowVal,$shadowVal,.1),
+    0 1px 3px rgba($shadowVal,$shadowVal,$shadowVal,.3),
+    0 3px 5px rgba($shadowVal,$shadowVal,$shadowVal,.2),
+    0 5px 10px rgba($shadowVal,$shadowVal,$shadowVal,.25),
+    0 10px 10px rgba($shadowVal,$shadowVal,$shadowVal,.2),
+    0 20px 20px rgba($shadowVal,$shadowVal,$shadowVal,.15);
+  }
+
+  p {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 6px;
+    a {
+      color: #aaaaaa;
+      @include transition-property(color);
+      @include transition-duration(0.5s);
+      &:hover {
+        color: #fb292d !important;
+      }
+    }
+
+  }
+
+  div.container_button {
+    margin-top: 20px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      float: left;
+
+      &:first-child {
+        margin-right: 40px;;
+      }
+
+      a.button {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        background: #eee;
+        color: #515151;
+        display: inline-block;
+
+        font-size: 12px;
+        padding: 8px 12px;
+
+        position: relative;
+        text-decoration: none;
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0.21, rgb(203, 203, 203)), color-stop(0.58, rgb(227, 226, 226)));
+        background: -moz-linear-gradient(center bottom, rgb(203, 203, 203) 21%, rgb(227, 226, 226) 58%);
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3) /* glass edge */, inset 0 1px 0 0 rgba(255, 255, 255, 0.5) /* top highlight */, inset 0 -3px 0 0 rgba(0, 0, 0, 0.5) /* bottom shadow */;
+        -webkit-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 0 rgba(0, 0, 0, .6);
+        text-shadow: 0 1px rgba(255, 255, 255, 0.6);
+
+        &:before {
+          background: #cbcbcb;
+          cursor: pointer;
+        }
+
+
+
+        &:active {
+          background: #ccc;
+          padding: 9px 12px 7px !important;
+          //padding: 22px 34px 20px; /* Bump down text–Thanks to Jason for the suggestion */
+          -moz-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), inset 0 -1px 0 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          -webkit-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), inset 0 -1px 0 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3), inset 0 -1px 0 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          text-shadow: none;
+        }
+
+      }
+    }
+  }
+
+  padding-bottom: 40px;
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  @include box-shadow(rgba(255, 255, 255, .08) 0 1px 0);
 
 }
 
-
-
-aside{
+aside {
   float: left;
   width: 240px;
   padding-right: 40px;
@@ -23,10 +127,11 @@ aside{
   border-right: 1px solid rgba(0, 0, 0, 1);
   @include box-shadow(rgba( 255, 255, 255, .1) -1px 0 0 inset);
 
-  ul.chapter{
-    margin-bottom: 50px;
+  ul.chapter {
+    margin: 0 0 40px;
+    padding: 0;
 
-    li.title{
+    li.title {
       list-style: none;
 
       font-size: 18px;
@@ -35,38 +140,113 @@ aside{
       margin-bottom: 15px;
 
       border-bottom: 1px solid rgba(0, 0, 0, 1);
-      @include box-shadow(rgba( 255, 255, 255, .08) 0 1px 0 );
+      cursor: pointer;
+
+      @include box-shadow(rgba(255, 255, 255, .08) 0 1px 0);
+      @include transition-property(color);
+      @include transition-duration(0.5s);
+
+      &:hover {
+        color: #fb292d;
+      }
     }
 
-    ul.smallCh{
-      margin: 0;
-      padding: 0;
+    div.wrappSmallCh {
+      height: 0;
+      overflow: hidden;
 
-      li{
-        color: #cccccc;
-        list-style: none;
-        margin-bottom: 6px;
+      ul.smallCh {
+        margin: 0;
+        padding: 0;
 
-        a{
-          color: #aaaaaa;
+        li {
+          color: #cccccc;
+          list-style: none;
+          margin-bottom: 6px;
+          @include transition-property(color);
+          @include transition-duration(0.5s);
+
+          a {
+            color: #aaaaaa;
+            @include transition-property(color);
+            @include transition-duration(0.5s);
+
+            &:hover {
+              color: #7d2121;
+            }
+          }
+
+          &:hover {
+            color: #7d2121;
+          }
+        }
+
+        li.selected {
+          color: #fb292d !important;
+          a {
+            text-decoration: none;
+            color: #fb292d !important;
+          }
         }
 
       }
-
     }
 
   }
 
 }
 
-article{
+/*exception li's id*/
+li.ommit {
+  text-decoration: line-through;
+  cursor: default !important;
+
+  &:hover {
+    color: #ffffff !important;
+  }
+}
+
+article {
   margin-left: 40px;
-  float:left;
-  iframe{
-    width: 720px;
-    height: 1200px;
+  float: left;
+  overflow: hidden;
+
+  iframe {
+    width: 600px;
+    height: 720px;
+    overflow: hidden;
+  }
+}
+
+footer {
+  padding-top: 15px;
+  margin-top: 40px;
+
+  border-top: 1px solid rgba(0, 0, 0, 1);
+  @include box-shadow(rgba(255, 255, 255, .08) 0 1px 0 inset);
+
+  p {
+    color: #fff;
+    font-size: 14px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #aaaaaa;
+      @include transition-property(color);
+      @include transition-duration(0.5s);
+      &:hover {
+        color: #fb292d !important;
+      }
+    }
 
   }
+}
+
+/*clear*/
+
+div.clear {
+  clear: both;
 }
 
 /* mixin */

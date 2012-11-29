@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>KenjineJs Index::10/31/2012__14:39</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="example/common/css/normalize.css">
 
     <link rel="stylesheet" href="sub/css/style.css">
@@ -11,86 +13,144 @@
 </head>
 <body>
 <div id="wrapper">
-    <h1>KenjiJS tutorial index:</h1>
 
+    <header>
+        <h1>KenjineJS(β)</h1>
+
+        <p id="readme">KenjineJS is the JavaScript physics engine library (Sorry, now it is the beta version) by <a
+                href="http:kenji-special.com" target="_blank">Kenji Saito</a>.</p>
+
+        <p>It enable us to make the cool animation and visual easily, and ie used for the canvas in HTML5.</p>
+
+        <div class="container_button">
+            <p><a href="https://github.com/kenjiSpecial/kenjineJS_beta/archive/master.zip" class="button">Download
+                codes</a></p>
+
+            <p><a href="https://github.com/kenjiSpecial/kenjineJS_beta" class="button" target="_blank">Watch on
+                GitHub</a></p>
+        </div>
+        <div class="clear"></div>
+    </header>
 
     <aside>
         <ul class="chapter">
             <li class="title">1.Vector</li>
-            <ul class="smallCh">
-                <li>1. <a href="example/1_vector/1_vector">vector</a></li>
-                <li>2. <a href="example/1_vector/2_vector_addition">vector addition</a></li>
-                <li>3. <a href="example/1_vector/3_vector_addScaledVector">add scaled vector</a></li>
-                <li>4. <a href="example/1_vector/4_vector_magnitude_dot_product">vector magnitude dot product</a></li>
-                <li>5. <a href="example/1_vector/5_vector_normal">vector_normal</a></li>
-                <li>6 <a href="example/1_vector/6_cross_product">cross_product</a></li>
-            </ul>
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li class="selected">1. <a href="example/1_vector/1_vector">vector</a></li>
+                    <li>2. <a href="example/1_vector/2_vector_addition">vector addition</a></li>
+                    <li>3. <a href="example/1_vector/3_vector_addScaledVector">add scaled vector</a></li>
+                    <li>4. <a href="example/1_vector/4_vector_magnitude_dot_product">vector magnitude dot product</a>
+                    </li>
+                    <li>5. <a href="example/1_vector/5_vector_normal">vector_normal</a></li>
+                    <li>6 <a href="example/1_vector/6_cross_product">cross_product</a></li>
+                </ul>
+            </div>
+        </ul>
+
+        <ul class="chapter" style="height: 41px;">
+            <li class="title ommit">2.Shape</li>
         </ul>
 
         <ul class="chapter">
-            <li class="title">2.Shape</li>
-        </ul>
-
-        <ul class="chapter">
-            <li class="title">3.Vector</li>
-            <ul class="smallCh">
-                <li>1. <a href="example/3_Matrix/1_matrix">Matrix</a></li>
-                <li>2. <a href="example/3_Matrix/2_matrix_translation">Matrix translation</a></li>
-                <li>3. <a href="example/3_Matrix/3_matrix_scale">Matrix scale</a></li>
-                <li>4. <a href="example/3_Matrix/4_matrix_rotation">Matrix rotation</a></li>
-            </ul>
+            <li class="title">3.Matrix</li>
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li>1. <a href="example/3_Matrix/1_matrix">Matrix</a></li>
+                    <li>2. <a href="example/3_Matrix/2_matrix_translation">Matrix translation</a></li>
+                    <li>3. <a href="example/3_Matrix/3_matrix_scale">Matrix scale</a></li>
+                    <li>4. <a href="example/3_Matrix/4_matrix_rotation">Matrix rotation</a></li>
+                </ul>
+            </div>
         </ul>
 
         <ul class="chapter">
             <li class="title">4.Particle</li>
-            <ul class="smallCh">
-                <li>1. <a href="example/4_particls/1_particle">Particle</a></li>
-                <li>2. <a href="example/4_particls/2_particle_system">Particle System</a></li>
-                <li>3. <a href="example/4_particls/3_particle_water">Particle Water</a></li>
-            </ul>
+
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li>1. <a href="example/4_particls/1_particle">Particle</a></li>
+                    <li>2. <a href="example/4_particls/2_particle_system">Particle System</a></li>
+                    <li>3. <a href="example/4_particls/3_particle_water">Particle Water</a></li>
+                </ul>
+            </div>
         </ul>
 
         <ul class="chapter">
             <li class="title">5.Force</li>
-            <ul class="smallCh">
-                <li>1. <a href="example/5_force/1_conact_force">Contract force</a></li>
-                <li>2. <a href="example/5_force/2_contace_force02">Contact force</a></li>
-                <li>3. <a href="example/5_force/3_ballon">Ballon force</a></li>
-                <li>4. <a href="example/5_force/4_floating_force">Floating force</a></li>
-                <li>5. <a href="example/5_force/5_bubble_force">Bubble force</a></li>
-                <li>6 <a href="example/5_force/6_spring_force">Spring force</a></li>
-                <li>7. <a href="example/5_force/7_spring_force02">Spring force</a></li>
-                <li>8. <a href="example/5_force/8_multiple_spring_force">Multiple spring force</a></li>
-                <li>9. <a href="example/5_force/9_centripetal_force">Centripetal force</a></li>
-                <li>10. <a href="example/5_force/10_centripental_froce">Centripetal force</a></li>
-                <li>11. <a href="example/5_force/11_pendulum_force">Pendulum force</a></li>
-                <li>12. <a href="example/5_force/12_orbit_force01">Orbit force</a></li>
-                <li>13. <a href="example/5_force/13_gravity_force">gravity force</a></li>
-                <li>14. <a href="example/5_force/14_rope">Rope</a></li>
-                <li>15. <a href="example/5_force/15_cloth">Cloth</a></li>
-            </ul>
+
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li>1. <a href="example/5_force/1_conact_force">Contract force</a></li>
+                    <li>2. <a href="example/5_force/2_contace_force02">Contact force</a></li>
+                    <li>3. <a href="example/5_force/3_ballon">Ballon force</a></li>
+                    <li>4. <a href="example/5_force/4_floating_force">Floating force</a></li>
+                    <li>5. <a href="example/5_force/5_bubble_force">Bubble force</a></li>
+                    <li>6 <a href="example/5_force/6_spring_force">Spring force</a></li>
+                    <li>7. <a href="example/5_force/7_spring_force02">Spring force</a></li>
+                    <li>8. <a href="example/5_force/8_multiple_spring_force">Multiple spring force</a></li>
+                    <li>9. <a href="example/5_force/9_centripetal_force">Centripetal force</a></li>
+                    <li>10. <a href="example/5_force/10_centripental_froce">Centripetal force</a></li>
+                    <li>11. <a href="example/5_force/11_pendulum_force">Pendulum force</a></li>
+                    <li>12. <a href="example/5_force/12_orbit_force01">Orbit force</a></li>
+                    <li>13. <a href="example/5_force/13_gravity_force">gravity force</a></li>
+                    <li>14. <a href="example/5_force/14_rope">Rope</a></li>
+                    <li>15. <a href="example/5_force/15_cloth">Cloth</a></li>
+                </ul>
+            </div>
         </ul>
 
         <ul class="chapter">
             <li class="title">6.Collisions</li>
-            <ul class="smallCh">
-                <li>3.1. <a href="example">Matrix</a></li>
-                <li>3.2. <a href="example">Matrix translation</a></li>
-                <li>1.3. <a href="example">vector_additio</a></li>
-                <li>1.4. <a href="example">vector magnitude dot product</a></li>
-                <li>1.5. <a href="example">vector_normal</a></li>
-                <li>1.6 <a href="example">cross_product</a></li>
-            </ul>
+
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li>1. <a href="example/6_collision/1_collision">Collision</a></li>
+                    <li>2. <a href="example/6_collision/2_animation_collision">Collision with animation</a></li>
+                    <li>3. <a href="example/6_collision/3_animation_collision02">Collision with animation</a></li>
+                    <li>4. <a href="example/6_collision/4_collision_circle_one_dimension">Collision: circle / 1
+                        dimension</a></li>
+                    <li>5. <a href="example/6_collision/5_collision_circle_two_dimension">Collision: circle / 2
+                        dimension</a></li>
+                    <li>6 <a href="example/6_collision/6_collision">collisions</a></li>
+                </ul>
+            </div>
+        </ul>
+
+        <ul class="chapter">
+            <li class="title">7.Rigid body</li>
+
+            <div class="wrappSmallCh">
+                <ul class="smallCh">
+                    <li>1. <a href="example/7_rigidbody/1_rigidbody_test">Rigid body test</a></li>
+                    <li>2. <a href="example/7_rigidbody/2_rigidbody_test">Rigid body test</a></li>
+                    <li>3. <a href="example/7_rigidbody/3_turbine_simulation">Turbine simulation</a></li>
+                    <li>4. <a href="example/7_rigidbody/4_circle_test">Circle test</a></li>
+                    <li>5. <a href="example/7_rigidbody/5_circle_test">Circle test</a></li>
+                    <li>6 <a href="example/7_rigidbody/6_simple_collision">Simple collision</a></li>
+                    <li>7. <a href="example/7_rigidbody/7_collidiong_blocks">Block collision</a></li>
+                    <li>8. <a href="example/7_rigidbody/8_collision_blocks">Blocks collision</a></li>
+                </ul>
+            </div>
         </ul>
 
     </aside>
 
     <article>
-        <iframe src="example/1_vector/1_vector">
+        <iframe id="myFrame" src="example/1_vector/1_vector">
             <p>Your browser does not support iframes.</p>
         </iframe>
     </article>
 
+    <div class="clear">
+    </div>
+    <footer>
+        <p> Designed and Developed by <a href="http:kenji-special.com" target="_blank">Kenji Saito</a>
+        </p>
+    </footer>
+
 </div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="/sub/js/script.js"></script>
 </body>
 </html>
