@@ -176,8 +176,16 @@ aside {
             }
           }
 
+
+
           &:hover {
             color: #7d2121;
+          }
+        }
+
+        li.ommit{
+          &:hover{
+            color: #cccccc !important;
           }
         }
 
@@ -213,7 +221,7 @@ article {
 
   iframe {
     width: 600px;
-    height: 720px;
+    height: 820px;
     overflow: hidden;
   }
 }

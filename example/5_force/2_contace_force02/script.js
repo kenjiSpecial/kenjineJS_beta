@@ -13,7 +13,7 @@
      */
 
     var Ball = function () {
-        this.color = "rgba(100,100,100, 0.3)";
+        this.color = "rgba(100,100,100, 1)";
         this.size = 40;
     };
 
@@ -63,6 +63,10 @@
     var myForceArrow = new Arrow(myParticle.acceleration);
     myForceArrow.setStartPt(myParticle.position);
 
+    myParticle.position = mySlope.end_vector.subtractVector(mySlope.start_vector).multipleVector(.2).addVector(mySlope.start_vector);
+    myParticle.position = myParticle.position.subtractVector(mySlope.end_vector.subtractVector(mySlope.start_vector).normal().multipleVector(-myBall.size));
+
+
     drawing();
 
     /** creating drawing() function. **/
@@ -82,6 +86,7 @@
         myParticle.update();
 
         mySlope.draw(myContext);
+        myBall.draw(myContext, myParticle);
 
         myArrow.setVector(myParticle.velocity);
         myArrow.setStartPt(myParticle.position);
@@ -91,7 +96,7 @@
         myForceArrow.setStartPt(myParticle.position);
         myForceArrow.draw(myContext);
 
-        myBall.draw(myContext, myParticle);
+
 
         myParticle.resetForce();
         requestAnimFrame(drawing);

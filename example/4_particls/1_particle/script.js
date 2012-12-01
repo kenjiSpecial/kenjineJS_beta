@@ -21,7 +21,7 @@
         this.particle = particle;
 
         //this.force_zero();
-        this.setGravity();
+        this.particle..setGravity();
     };
     /*
      * creating ball class

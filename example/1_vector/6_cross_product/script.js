@@ -23,8 +23,8 @@
 
     var centerPtVector = new Vector( 100, 100);
 
-    var Vector01 = new Vector(240, 60);
-    var Vector02 = new Vector(40, 180);
+    var Vector01 = new Vector(320, 80);
+    var Vector02 = new Vector(120, 180);
 
     var Vector03 = Vector01.addVector(Vector02);
 
@@ -50,6 +50,9 @@
     var Arrow_01 = new Arrow(Vector01);
     var Arrow_02 = new Arrow(Vector02);
 
+    coordinate.drawVector(myContext, Vector01);
+    coordinate.drawVector(myContext, Vector02);
+
     Arrow_01.setStartPt(centerPtVector);
     Arrow_02.setStartPt(centerPtVector);
 
@@ -66,6 +69,6 @@
 
     myContext.fillStyle = "#ffffff";
     myContext.font = "bold 18px 'Arial'";
-    myContext.fillText("Area: " + cross_product.toString(), 180, 220);
+    myContext.fillText("Area: " + cross_product.toString(), 270, 230);
 
 })();

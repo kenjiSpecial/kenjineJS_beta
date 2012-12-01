@@ -13,7 +13,7 @@
      */
 
     var Ball = function () {
-        this.color = "rgba(0,0,0, .3)";
+        this.color = "rgba(0,0,0)";
         this.size = 40;
     };
 
@@ -59,6 +59,9 @@
     var mySlope = new Slope();
     var myArrow = new Arrow(myParticle.velocity);
     myArrow.setStartPt(myParticle.position);
+
+    myParticle.position = mySlope.end_vector.subtractVector(mySlope.start_vector).multipleVector(.2).addVector(mySlope.start_vector);
+    myParticle.position = myParticle.position.subtractVector(mySlope.end_vector.subtractVector(mySlope.start_vector).normal().multipleVector(-myBall.size));
 
     drawing();
 
