@@ -38,8 +38,16 @@
 
     var myWall = new Wall();
     myWall.beginVector = new Vector( wd * 0.1, hg * 0.2);
-    myWall.endVector = new Vector( wd * 0.9, hg * 0.9);
+    myWall.endVector = new Vector( wd * 0.9, hg * 0.6);
+    myWall.bounceValue = - 0.6;
     myWall.cal_normalize();
+
+    var sideWall = new Wall();
+    sideWall.beginVector = new Vector( wd, 0);
+    sideWall.endVector = new Vector( wd, hg);
+    sideWall.bounceValue = - 0.2;
+    sideWall.cal_normalize();
+
 
     var myParticle = new Particle();
     myParticle.mass = 20;
@@ -63,6 +71,7 @@
         myParticle.update();
 
         myWall.checkBounce( myParticle, myBall.size);
+        sideWall.checkBounce( myParticle, myBall.size);
 
 //        drawing
         myBall.draw( myParticle.position, myContext);

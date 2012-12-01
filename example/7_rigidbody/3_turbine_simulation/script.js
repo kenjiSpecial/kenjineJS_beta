@@ -60,11 +60,14 @@
         myTurbine03.torque = 20;
     }
 
+    var count = 0;
+
 
     loop();
 
     function loop(){
         contextClear.update_fill(myContext);
+
 
         myTurbine01.torque += - 0.3 * myTurbine01.angVelocity;
         myTurbine02.torque += - 0.3 * myTurbine01.angVelocity;
@@ -79,6 +82,16 @@
         myTurbine03.update();
 
         //drawing of turbines
+
+        myContext.font = '18px sans-serif';
+        if(count < 10){
+            myContext.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        }else{
+            myContext.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        }
+
+        myContext.fillText("CLICK!", 510, 370);
+
 //        console.log(ang)
         myTurbine01.draw(myContext);
         myTurbine02.draw(myContext);
@@ -90,6 +103,8 @@
         myTurbine03.resetForce();
 
         requestAnimFrame(loop);
+
+        count = (count + 1)%20;
     }
 
 })();

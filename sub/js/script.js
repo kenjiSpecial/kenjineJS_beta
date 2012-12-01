@@ -11,6 +11,12 @@ $(document).ready(function(){
     var li = $('li.title');
     var selectedLi = $("li.selected");
 
+//    var iframeHeightfirst = $(iframe).contents().find('body').height();
+//    iframeHeightfirst = iframeHeightfirst + 10;
+//    var iframeHeightFirstpx = iframeHeightfirst.toString() + 'px';
+//
+//    $(iframe).css('height', iframeHeightFirstpx);
+
 
 
     $("ul.smallCh a").click(function(e){
@@ -19,7 +25,13 @@ $(document).ready(function(){
         url = $(this).attr("href");
         $(iframe).attr('src', url);
 
-//        $(this).find('li').addClass('selected');
+//        TODO getting the height of iframe
+//        var iframeHeight = $(iframe).contents().find('html').height();
+//        alert(iframeHeight)
+//        var iframeHeightpx = iframeHeight.toString() + 'px';
+//        $(iframe).css('height', iframeHeightpx);
+
+
         selectedLi.removeClass('selected');
         selectedLi = $(this.parentNode);
         selectedLi.addClass('selected');

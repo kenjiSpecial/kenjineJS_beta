@@ -4,12 +4,13 @@ var Wall = function () {
     this.normalizeVector = undefined;
     this.normalVector = undefined;
     this.length = undefined;
-    this.bouncing = -1;
+    this.bounceValue = -1;
 
     this.wallAnimationDone = false;
     this.bouncing = true;
 
     this.cr = 0.4;
+
 };
 
 Wall.prototype.cal_normalize = function () {
@@ -52,9 +53,10 @@ Wall.prototype.checkBounce = function (myParticle, mySize) {
 
         var velocityVector = myParticle.velocity;
         var verticalVelocityValue = this.normalVector.dotProduct(velocityVector);
-        verticalVelocityValue *= this.bouncing - 1;
+        verticalVelocityValue = verticalVelocityValue * (-1 + this.bounceValue);
 
         var hoseiDistance = JudgeSize - distanceValue;
+
         if (this.normalVector.dotProduct(myParticle.velocity) > 0) {
             myParticle.position = myParticle.position.addScaledVector(this.normalVector, -2 * hoseiDistance);
         } else {
@@ -63,6 +65,7 @@ Wall.prototype.checkBounce = function (myParticle, mySize) {
 
         myParticle.velocity = velocityVector.addScaledVector(this.normalVector, verticalVelocityValue);
     }
+
 };
 
 Wall.prototype.calcRBForce = function(myCircleRB){

@@ -183,45 +183,49 @@ aside ul.chapter div.wrappSmallCh ul.smallCh li a {
 aside ul.chapter div.wrappSmallCh ul.smallCh li a:hover {
   color: #7d2121;
 }
-/* line 179, ../scss/style.scss */
+/* line 181, ../scss/style.scss */
 aside ul.chapter div.wrappSmallCh ul.smallCh li:hover {
   color: #7d2121;
 }
-/* line 184, ../scss/style.scss */
+/* line 187, ../scss/style.scss */
+aside ul.chapter div.wrappSmallCh ul.smallCh li.ommit:hover {
+  color: #cccccc !important;
+}
+/* line 192, ../scss/style.scss */
 aside ul.chapter div.wrappSmallCh ul.smallCh li.selected {
   color: #fb292d !important;
 }
-/* line 186, ../scss/style.scss */
+/* line 194, ../scss/style.scss */
 aside ul.chapter div.wrappSmallCh ul.smallCh li.selected a {
   text-decoration: none;
   color: #fb292d !important;
 }
 
 /*exception li's id*/
-/* line 200, ../scss/style.scss */
+/* line 208, ../scss/style.scss */
 li.ommit {
   text-decoration: line-through;
   cursor: default !important;
 }
-/* line 204, ../scss/style.scss */
+/* line 212, ../scss/style.scss */
 li.ommit:hover {
   color: #ffffff !important;
 }
 
-/* line 209, ../scss/style.scss */
+/* line 217, ../scss/style.scss */
 article {
   margin-left: 40px;
   float: left;
   overflow: hidden;
 }
-/* line 214, ../scss/style.scss */
+/* line 222, ../scss/style.scss */
 article iframe {
   width: 600px;
-  height: 720px;
+  height: 820px;
   overflow: hidden;
 }
 
-/* line 221, ../scss/style.scss */
+/* line 229, ../scss/style.scss */
 footer {
   padding-top: 15px;
   margin-top: 40px;
@@ -230,7 +234,7 @@ footer {
   -moz-box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0 inset;
   box-shadow: rgba(255, 255, 255, 0.08) 0 1px 0 inset;
 }
-/* line 228, ../scss/style.scss */
+/* line 236, ../scss/style.scss */
 footer p {
   color: #fff;
   font-size: 14px;
@@ -238,7 +242,7 @@ footer p {
   margin: 0;
   padding: 0;
 }
-/* line 234, ../scss/style.scss */
+/* line 242, ../scss/style.scss */
 footer p a {
   color: #aaaaaa;
   -webkit-transition-property: color;
@@ -250,13 +254,13 @@ footer p a {
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
 }
-/* line 238, ../scss/style.scss */
+/* line 246, ../scss/style.scss */
 footer p a:hover {
   color: #fb292d !important;
 }
 
 /*clear*/
-/* line 248, ../scss/style.scss */
+/* line 256, ../scss/style.scss */
 div.clear {
   clear: both;
 }

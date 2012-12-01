@@ -42,21 +42,21 @@
     myWall.beginVector = new Vector( wd * 0.1, hg * 0.6);
     myWall.endVector = new Vector( wd * 0.8, hg * 0.2);
     myWall.cal_normalize();
-    myWall.bouncing = -0.8;
+    myWall.bounceValue = -0.8;
 
     var myWall02 = new Wall();
     myWall02.beginVector = new Vector( 0, 0);
     myWall02.endVector = new Vector( 0, hg);
     myWall02.cal_normalize();
-    myWall02.bouncing = -0.8;
+    myWall02.bounceValue = -0.8;
 
     var myWall03 = new Wall();
     myWall03.beginVector = new Vector( 0, hg * 0.8);
     myWall03.endVector = new Vector( wd, hg);
     myWall03.cal_normalize();
-    myWall03.bouncing = -0.8;
+    myWall03.bounceValue = -0.8;
 
-    var particleNum = 200;
+    var particleNum = 240;
     var particles = [];
 
     for(var i = 0; i < particleNum; i++){
